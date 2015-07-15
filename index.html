@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>卡片翻转</title>
+    <meta charset="utf-8">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-easing/jquery.easing.min.js"></script>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <style>
+        #parent{
+            width: 500px;
+            height: 500px;
+            background: #cccccc;
+           -webkit-perspective:800;
+            margin: 0 auto;
+        }
+
+        #child{
+            width: 250px;
+            height: 250px;
+            background: #000000;
+            margin: auto auto;
+
+            -webkit-transition: -webkit-transform 1s ease;
+            transition: transform 1s ease;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .flip{
+            -webkit-transform: rotateY(-180deg);
+        }
+    </style>
+</head>
+<body>
+<div id="parent">
+<div id="child"></div>
+</div>
+<script>
+    $(function(){
+        if($('html').hasClass('csstransforms3d')){
+            console.log("浏览器支持csstransform3d!");
+        }
+       $('#child').mouseenter(function(){
+           console.log("mouseove");
+           $(this).addClass('flip')
+       }).mouseleave(function(){
+                   $(this).removeClass('flip')
+         })
+    })
+</script>
+</body>
+</html>
